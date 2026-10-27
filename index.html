@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ChessMate is a clean, responsive two-player chess game for the browser.">
+  <title>ChessMate | Play Chess</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- chess.js handles chess rules and legal moves. An internet connection is needed to load this library. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ChessMate home"><span class="brand-mark">♞</span> ChessMate</a>
+    <span class="top-note">LOCAL TWO-PLAYER CHESS</span>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">THINK. PLAN. PLAY.</p>
+      <h1>Your next move<br><span>starts here.</span></h1>
+      <p class="intro-copy">A simple chessboard for two players sharing one screen. Make your move, read the position, and keep the game going.</p>
+    </section>
+
+    <section class="game-layout" aria-label="Chess game">
+      <div class="board-panel">
+        <div class="player-row">
+          <div class="player-avatar black-avatar">♚</div>
+          <div class="player-details"><strong>Black</strong><span>Player 2</span></div>
+          <span class="side-tag">BLACK</span>
+        </div>
+        <div id="chessboard" class="chessboard" role="group" aria-label="Chessboard"></div>
+        <div class="player-row bottom-player">
+          <div class="player-avatar white-avatar">♔</div>
+          <div class="player-details"><strong>White</strong><span>Player 1</span></div>
+          <span class="side-tag">WHITE</span>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="status-card">
+          <div class="status-top"><span class="status-dot"></span><span>GAME STATUS</span></div>
+          <h2 id="status-title">White to move</h2>
+          <p id="status-message">Select a piece, then choose a highlighted square.</p>
+          <div class="turn-indicator"><span id="turn-piece" class="turn-piece">♙</span><span id="turn-label">White's turn</span></div>
+        </div>
+
+        <div class="controls-card">
+          <h3>Game controls</h3>
+          <div class="control-buttons">
+            <button id="undo-button" class="button button-secondary" type="button">↶ Undo move</button>
+            <button id="restart-button" class="button button-primary" type="button">↻ New game</button>
+          </div>
+          <p class="small-note">New game resets the board. Undo takes back the last move.</p>
+        </div>
+
+        <div class="moves-card">
+          <div class="moves-heading"><h3>Move history</h3><span id="move-count" class="count-pill">0 moves</span></div>
+          <ol id="move-list" class="move-list"><li class="empty-moves">Moves will appear here.</li></ol>
+        </div>
+        <p class="credit-note">Built with HTML, CSS, JavaScript &amp; chess.js</p>
+      </aside>
+    </section>
+
+    <section class="how-to">
+      <div><span class="how-number">01</span><h3>Select</h3><p>Click one of your pieces.</p></div>
+      <div><span class="how-number">02</span><h3>Move</h3><p>Choose a highlighted destination.</p></div>
+      <div><span class="how-number">03</span><h3>Keep playing</h3><p>Take turns until the game ends.</p></div>
+    </section>
+    <footer><span>ChessMate</span><span>A beginner-friendly web development project</span></footer>
+  </main>
+
+  <div id="promotion-dialog" class="dialog-backdrop" hidden>
+    <div class="promotion-dialog" role="dialog" aria-modal="true" aria-labelledby="promotion-title">
+      <h2 id="promotion-title">Choose your promotion</h2>
+      <p>Your pawn reached the last rank. Choose a piece.</p>
+      <div class="promotion-options">
+        <button data-promotion="q" aria-label="Promote to queen">♕<span>Queen</span></button>
+        <button data-promotion="r" aria-label="Promote to rook">♖<span>Rook</span></button>
+        <button data-promotion="b" aria-label="Promote to bishop">♗<span>Bishop</span></button>
+        <button data-promotion="n" aria-label="Promote to knight">♘<span>Knight</span></button>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
